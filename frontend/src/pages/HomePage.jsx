@@ -13,6 +13,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // check if user is logged in, if not redirect user to login page (still need to create that)
+    // *pop-up to let user either use guest mode / login*
     const fetchNotes = async () => {
       try {
         const res = await api.get("/notes");
