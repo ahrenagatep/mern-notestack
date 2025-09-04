@@ -38,5 +38,3 @@ You can visit the website here: https://mern-notestack.onrender.com/
 ## Contact
 
 My Socials - [@ahrenagatep](https://www.instagram.com/ahrenagatep/) - 1ahren7@gmail.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
