@@ -1,9 +1,10 @@
-import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import api from "./lib/axios";
+
+import { FiArrowLeft } from "react-icons/fi";
 
 const CreatePage = () => {
   const [title, setTitle] = useState("");
@@ -50,7 +51,7 @@ const CreatePage = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-2xl mx-auto">
         <Link to={"/"} className="btn btn-ghost mb-6">
-          <ArrowLeftIcon className="size-5" />
+          <FiArrowLeft className="size-5" />
           Back to Notes
         </Link>
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router";
 import api from "./lib/axios";
-import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from "lucide-react";
+
+import { FiArrowLeft, FiTrash } from "react-icons/fi";
 
 const NoteDetailPage = () => {
   const [note, setNote] = useState(null);
@@ -56,7 +57,7 @@ const NoteDetailPage = () => {
     try {
       await api.put(`/notes/${id}`, note);
       navigate("/");
-      toast.success("Note updated successfully!", {
+      toast.success("Changes saved!", {
         icon: "✍️"
       })
     } catch (error) {
@@ -81,11 +82,11 @@ const NoteDetailPage = () => {
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <Link to="/" className="btn btn-ghost">
-              <ArrowLeftIcon className="h-5 w-5" />
+              <FiArrowLeft className="h-5 w-5" />
               Back to Notes
             </Link>
             <button onClick={handleDelete} className="btn btn-error btn-outline">
-              <Trash2Icon className="h-5 w-5" />
+              <FiTrash className="h-5 w-5" />
               Delete Note
             </button>
           </div>
