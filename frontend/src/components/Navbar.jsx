@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useGoogleLogin } from "@react-oauth/google";
 import toast from "react-hot-toast";
 
-import { FcGoogle } from "react-icons/fc";
+import { IoLogInOutline } from "react-icons/io5";
 import { HiMoon, HiOutlinePlus } from "react-icons/hi";
 
 const navbar = () => {
@@ -10,6 +10,7 @@ const navbar = () => {
     onSuccess: (tokenResponse) => {
       toast.success("Login successful!");
       console.log("Login success ", tokenResponse);
+      localStorage.setItem("authToken", res.data.token);
     },
     onError: () => {
       toast.error("Login failed.");
@@ -32,10 +33,10 @@ const navbar = () => {
               <span>Dark Mode</span>
             </button>
 
-            <button className="btn btn-primary" onClick={() => login()}>
-              <FcGoogle className="size-7" />
-              <span>Sign in with Google</span>
-            </button>
+            <Link to={"/login"} className="btn btn-primary">
+              <IoLogInOutline className="size-5" />
+              <span>Login</span>
+            </Link>
         </div>
       </div>
     </div>

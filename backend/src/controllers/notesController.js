@@ -24,7 +24,11 @@ export async function getNoteById(req, res) {
 export async function createNote(req, res){
     try {
         const {title, content} = req.body
-        const note = new Note({title, content})
+        const note = new Note({
+            title,
+            content,
+            user: req.user.id,
+        })
 
         const savedNote = await note.save();
         res.status(201).json({savedNote});
@@ -37,9 +41,11 @@ export async function createNote(req, res){
 export async function updateNote(req, res){
     try {
         const {title, content} = req.body;
-        const updatedNote = await Note.findByIdAndUpdate(req.params.id, {title, content}, {
-            new:true,
-        });
+        const updatedNote = await Note.findByIdAndUpdate(
+            { _id: req.params.id, user: req.user.id }, 
+            { title, content },
+            { new:true,}
+        );
 
         if(!updatedNote) return res.status(404).json({message:"Note not found"});
 
@@ -53,7 +59,10 @@ export async function updateNote(req, res){
 
 export async function deleteNote(req, res){
     try {
-        const deletedNote = await Note.findByIdAndDelete(req.params.id);
+        const deletedNote = await Note.findByIdAndDelete({
+            _id: req.params.id,
+            user: req.user.id
+        });
 
         if(!deletedNote) return res.status(404).json({message:"Note not found"});
 

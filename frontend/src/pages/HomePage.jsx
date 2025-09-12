@@ -6,7 +6,6 @@ import api from "./lib/axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
-import { GoogleLogin } from "@react-oauth/google";
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
@@ -14,8 +13,17 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // check if user is logged in, if not redirect user to login page (still need to create that)
-    // *pop-up to let user either use guest mode / login*
+    // check if user is logged in, if not redirect user to login page
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      toast.error("Log in to save notes.");
+      console.log("Not logged in.");
+      // navigate("/login");  
+    } else {
+      console.log("Login ", token);
+    } 
+
     const fetchNotes = async () => {
       try {
         const res = await api.get("/notes");

@@ -2,7 +2,9 @@ import React from 'react'
 
 const LoginPage = () => {
   return (
-    <div>LoginPage</div>
+    <div className="min-h-screen bg-base-300">
+      login page
+    </div>
   )
 }
 

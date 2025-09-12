@@ -3,9 +3,11 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 
+import authRoutes from "./routes/authRoutes.js";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
+
 
 dotenv.config();
 
@@ -41,6 +43,7 @@ app.use(rateLimiter);
 // endpoints (url + http to allow the client to interact with a specific resource)
 // prefixed endpoints with /api/notes
 
+app.use("/api/auth", authRoutes);
 app.use("/api/notes", notesRoutes);
 
 if(process.env.NODE_ENV === "production") {
