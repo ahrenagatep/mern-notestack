@@ -2,7 +2,8 @@ import Note from "../models/Note.js"
 
 export async function getAllNotes(req, res) {
     try {
-        const notes = await Note.find().sort({ createdAt: -1 });    //  1 sorts in ascending order (oldest first)
+        console.log("Logged-in user:", req.user);
+        const notes = await Note.find({ user: req.user._id }).sort({ createdAt: -1 });    //  1 sorts in ascending order (oldest first)
         res.status(200).json(notes);                                //  -1 sorts in descending order (newest first)
     } catch (error) {
         console.error("Error in getAllNotes controller", error);

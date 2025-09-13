@@ -1,22 +1,18 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useGoogleLogin } from "@react-oauth/google";
 import toast from "react-hot-toast";
 
-import { IoLogInOutline } from "react-icons/io5";
+import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import { HiMoon, HiOutlinePlus } from "react-icons/hi";
+import { isLoggedIn, logout } from "../pages/lib/auth";
 
 const navbar = () => {
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      toast.success("Login successful!");
-      console.log("Login success ", tokenResponse);
-      localStorage.setItem("authToken", res.data.token);
-    },
-    onError: () => {
-      toast.error("Login failed.");
-      console.log("Login failed")
-    }
-  });
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   
   return <header className="bg-base-300 border-b border-base-content/10">
     <div className="mx-auto max-w-6xl p-4">
@@ -33,10 +29,25 @@ const navbar = () => {
               <span>Dark Mode</span>
             </button>
 
-            <Link to={"/login"} className="btn btn-primary">
+            {/* login/logout button */}
+            {!isLoggedIn() ? (
+              <Link to={"/login"} className="btn btn-primary">
+                <IoLogInOutline className="size-5" />
+                <span>Login</span>
+              </Link>
+            ) : (
+              <button onClick={handleLogout} className="btn btn-primary">
+                <IoLogOutOutline className="size-5" />
+                <span>Logout</span>
+              </button>
+            )}
+
+            {/* <Link to={"/login"} className="btn btn-primary">
               <IoLogInOutline className="size-5" />
               <span>Login</span>
-            </Link>
+            </Link> */}
+
+            
         </div>
       </div>
     </div>

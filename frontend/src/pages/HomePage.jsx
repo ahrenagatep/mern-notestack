@@ -6,35 +6,44 @@ import api from "./lib/axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
+import { useNavigate } from "react-router";
+import { isLoggedIn } from "./lib/auth.js";
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // check if user is logged in, if not redirect user to login page
-    const token = localStorage.getItem("authToken");
-
-    if (!token) {
+    if (!isLoggedIn()) {
       toast.error("Log in to save notes.");
-      console.log("Not logged in.");
-      // navigate("/login");  
-    } else {
-      console.log("Login ", token);
-    } 
+      setTimeout(() => navigate("/login"), 1000);
+    }
 
     const fetchNotes = async () => {
       try {
-        const res = await api.get("/notes");
+
+        // const token = getAuthToken();
+        const token = localStorage.getItem("authToken");
+        const res = await api.get("/notes", {
+          headers: {
+            Authorization: 'Bearer ${token}',
+          },
+        });
+
         console.log(res.data);
         setNotes(res.data);
         setIsRateLimited(false);
+
       } catch (Error) {
         console.log(Error);
         console.log("Error fetching notes.");
         if (Error.response?.status === 429) {
           setIsRateLimited(true)
+        } else if (Error.response?.status === 401) {
+          toast.error("Session expired. Please log in again.");
+          navigate("/login");
         } else {
           toast.error("Failed to load notes.")
         }
@@ -50,16 +59,6 @@ const HomePage = () => {
       <Navbar />
 
       {isRateLimited && <RateLimitedUI />}
-
-      {/* <GoogleLogin 
-      onSuccess={(credentialResponse) => {
-        toast.success("Login successful!");
-        console.log(credentialResponse);
-      }} 
-      onError={() => {
-        toast.error("Login failed");
-        console.log("Login failed");
-      }}/> */}
 
       <div className="max-w-7xl mx-auto p-4 mt-6">
         {loading && <div className="text-center text-primary py-10">Loading notes...</div>}
