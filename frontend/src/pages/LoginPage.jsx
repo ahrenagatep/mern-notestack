@@ -33,7 +33,7 @@ const LoginPage = () => {
 
           <div className="card bg-base-100">
             <div className="card-body">
-              <h2 className="card-title text-2xl mb-4">Login</h2>
+              <h2 className="card-title text-2xl mb-4 justify-center">Login to NoteStack</h2>
               <form onSubmit={handleLogin}>
 
                 <div className="form-control mb-4">
@@ -62,12 +62,19 @@ const LoginPage = () => {
                   />
                 </div>
 
-                <div className="card-actions justify-end">
-                <button type="submit" className="btn btn-primary">
-                  Login
-                </button>
+                <div className="card-body justify-center">
+                  <button type="submit" className="btn btn-primary">
+                    Login
+                  </button>
                 </div>
               </form>
+              {/* make this stuff fancier bro \/ */}
+              <div className="card-actions justify-center content-center">
+                <h1>Don't have an account?</h1>
+                <Link to="/register" className="btn btn-primary">
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </div>
         </div>

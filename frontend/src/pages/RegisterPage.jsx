@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import api from "./lib/axios";
 import { FiArrowLeft } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
@@ -12,10 +13,16 @@ const RegisterPage = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
+            console.log("USERNAME: ", username);
+            console.log("PASSWORD: ", password);
             // backend stuff here for registering
+            const res = await api.post("/auth/register", {username, password});
+            localStorage.setItem("authToken", res.data.token);
             toast.success("Account created!");
+            navigate("/");
         } catch (error) {
             toast.error(error.response?.data?.message || "Failed to register.");
+            console.log(error);
         }
     };
 
@@ -70,7 +77,6 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
-    // <div>Register Page</div>
   )
 }
 
