@@ -10,6 +10,8 @@ const navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    if (!window.confirm("Are you sure you want to log out?")) return;
+
     logout();
     navigate("/login");
   };
