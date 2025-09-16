@@ -13,9 +13,6 @@ const RegisterPage = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            console.log("USERNAME: ", username);
-            console.log("PASSWORD: ", password);
-            // backend stuff here for registering
             const res = await api.post("/auth/register", {username, password});
             localStorage.setItem("authToken", res.data.token);
             toast.success("Account created!");
