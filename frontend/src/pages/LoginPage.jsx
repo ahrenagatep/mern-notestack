@@ -69,7 +69,7 @@ const LoginPage = () => {
                 </div>
               </form>
               {/* make this stuff fancier bro \/ */}
-              <div className="card-actions justify-center content-center">
+              <div className="card-actions justify-center items-center gap-2">
                 <h1>Don't have an account?</h1>
                 <Link to="/register" className="btn btn-primary">
                   Sign Up
