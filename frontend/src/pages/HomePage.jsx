@@ -16,15 +16,15 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // toast.error shows up twice, fix it.
     if (!isLoggedIn()) {
       toast.error("Log in to save notes.");
-      setTimeout(() => navigate("/login"), 1000);
+      setTimeout(() => {navigate("/login")}, 1000);
+      return;
     }
 
     const fetchNotes = async () => {
       try {
-
-        // const token = getAuthToken();
         const token = localStorage.getItem("authToken");
         const res = await api.get("/notes", {
           headers: {
