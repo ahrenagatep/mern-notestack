@@ -6,6 +6,9 @@ import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import { HiMoon, HiOutlinePlus } from "react-icons/hi";
 import { isLoggedIn, logout } from "../pages/lib/auth";
 
+import { GiNotebook } from "react-icons/gi";
+import { CiStickyNote } from "react-icons/ci";
+
 const navbar = () => {
   const navigate = useNavigate();
 
@@ -19,7 +22,10 @@ const navbar = () => {
   return <header className="bg-base-300 border-b border-base-content/10">
     <div className="mx-auto max-w-6xl p-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-primary font-mono tracking-tight">NoteStack</h1>
+        <h1 className="text-3xl text-primary font-light card-actions justify-center items-center">
+          <GiNotebook className="size-10" />
+          NoteStack
+          </h1>
         <div className="flex items-center gap-4">
 
             <Link to={"/create"} className="btn btn-primary">
