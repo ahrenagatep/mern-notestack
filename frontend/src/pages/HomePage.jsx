@@ -6,26 +6,44 @@ import api from "./lib/axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
+import { useNavigate } from "react-router";
+import { isLoggedIn } from "./lib/auth.js";
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // check if user is logged in, if not redirect user to login page (still need to create that)
-    // *pop-up to let user either use guest mode / login*
+    // toast.error shows up twice, fix it.
+    if (!isLoggedIn()) {
+      toast.error("Log in to save notes.");
+      setTimeout(() => {navigate("/login")}, 1000);
+      return;
+    }
+
     const fetchNotes = async () => {
       try {
-        const res = await api.get("/notes");
+        const token = localStorage.getItem("authToken");
+        const res = await api.get("/notes", {
+          headers: {
+            Authorization: 'Bearer ${token}',
+          },
+        });
+
         console.log(res.data);
         setNotes(res.data);
         setIsRateLimited(false);
+
       } catch (Error) {
         console.log(Error);
         console.log("Error fetching notes.");
         if (Error.response?.status === 429) {
           setIsRateLimited(true)
+        } else if (Error.response?.status === 401) {
+          toast.error("Session expired. Please log in again.");
+          navigate("/login");
         } else {
           toast.error("Failed to load notes.")
         }

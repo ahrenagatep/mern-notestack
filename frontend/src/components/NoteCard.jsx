@@ -1,8 +1,10 @@
-import { PenSquareIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 import { formatDate } from "../pages/lib/utils";
 import api from "../pages/lib/axios";
 import toast from "react-hot-toast";
+
+import { HiOutlinePencilSquare, HiTrash } from "react-icons/hi2";
+
 
 const NoteCard = ({ note, setNotes }) => {
     const handleDelete = async (e,id) => {
@@ -31,9 +33,9 @@ const NoteCard = ({ note, setNotes }) => {
                     {formatDate(new Date(note.createdAt))}
                 </span>
                 <div className="flex itmes-center gap1">
-                    <PenSquareIcon className="size-4" />
+                    <HiOutlinePencilSquare className="size-4" />
                     <button className="btn btn-ghost btn-xs text-error" onClick={(e) => handleDelete(e, note._id)}>
-                        <Trash2Icon className="size-4" />
+                        <HiTrash className="size-4" />
                     </button>
                 </div>
             </div>
