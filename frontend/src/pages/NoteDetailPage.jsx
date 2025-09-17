@@ -78,6 +78,7 @@ const NoteDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-base-200">
+      <title>{note.title}</title>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between mb-6">
