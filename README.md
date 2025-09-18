@@ -11,14 +11,12 @@ You can visit the website here: https://mern-notestack.onrender.com/
 
 ## Features
 * Create / Edit / Delete notes
-* Change between dark / light mode (still in development)
 
 ## Roadmap
 
 - [ ] Add Changelog
 - [ ] Add functionality of dark / light mode
 - [ ] Add ability to follow links
-- [ ] Multi-language Support
 
 ## Getting Started
 #### To run it locally, follow these steps:
