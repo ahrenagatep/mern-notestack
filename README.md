@@ -1,6 +1,7 @@
 # NoteStack - A Task Tracking App
 ### NoteStack is a full-stack note taking app built using MongoDB, Express, React, and Node.js
 You can visit the website here: https://mern-notestack.onrender.com/
+
 *Disclaimer: deployed using free render.com plan, may take a while to load*
 
 ### Built With (MERN):
