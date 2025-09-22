@@ -17,22 +17,6 @@ You can visit the website here: https://mern-notestack.onrender.com/
 - [ ] Add Changelog
 - [ ] Add functionality of dark / light mode
 - [ ] Add ability to follow links
-
-## Getting Started
-#### To run it locally, follow these steps:
-### Installation
-1. Clone the repo
-   ```sh
-   git clone https://github.com/ahrenagatep/mern-notestack.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm build
-   ```
-3. Run the build
-   ```js
-   npm start
-   ```
 ## Contact
 
 My Socials - [@ahrenagatep](https://www.instagram.com/ahrenagatep/) - 1ahren7@gmail.com
