@@ -15,9 +15,10 @@ You can visit the website here: https://mern-notestack.onrender.com/
 
 ## Roadmap
 
-- [ ] Add Changelog
 - [ ] Add functionality of dark / light mode
 - [ ] Add ability to follow links
+- [ ] Add account details (change password / delete account)
+
 ## Contact
 
 My Socials - [@ahrenagatep](https://www.instagram.com/ahrenagatep/) - 1ahren7@gmail.com
